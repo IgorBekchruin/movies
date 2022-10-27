@@ -20,7 +20,7 @@ class Actor(models.Model):
     name = models.CharField(max_length=200, verbose_name='Имя')
     age = models.PositiveSmallIntegerField(default=0, verbose_name='Возраст')
     description = models.TextField(verbose_name='Описание')
-    image = models.ImageField(upload_to='actors/', verbose_name='Изображение')
+    image = models.ImageField(upload_to='media/', verbose_name='Изображение')
 
     def __str__(self):
         return self.name
@@ -49,7 +49,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название')
     tagline = models.CharField(max_length=100, default='', verbose_name='Слоган')
     description = models.TextField(verbose_name='Описание')
-    poster = models.ImageField(upload_to='movies/', verbose_name='Постер')
+    poster = models.ImageField(upload_to='media/', verbose_name='Постер')
     year = models.PositiveSmallIntegerField(default=2019, verbose_name='Дата выхода')
     country = models.CharField(max_length=100, verbose_name='Страна')
     directors = models.ManyToManyField(Actor, verbose_name='режиссер', related_name='film_directors')
@@ -78,7 +78,7 @@ class Movie(models.Model):
 class MovieShots(models.Model):
     title = models.CharField(max_length=200, verbose_name='Заголовок')
     description = models.TextField(verbose_name='Описание')
-    image = models.ImageField(upload_to='movie_shots/', verbose_name='Изображение')
+    image = models.ImageField(upload_to='media/', verbose_name='Изображение')
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, verbose_name='Фильм')
 
     def __str__(self):
